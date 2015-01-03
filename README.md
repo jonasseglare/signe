@@ -33,7 +33,7 @@ Works like the function **only-register**, but also calls the **updater** functi
 A macro used to define a chain of function calls. Evaluates to a Funcall. If **expr** is a keyword **:obj**, it will evaluate to an empty Funcall object. Otherwise it will recursively build a function call chain.
 
 ### Installation
-With [leiningen](https://github.com/technomancy/leiningen), add [signe "0.1.0-SNAPSHOT"] to your project.clj file, for instance
+With [leiningen](https://github.com/technomancy/leiningen), add ```[signe "0.1.0-SNAPSHOT"]``` to ```:dependencies``` your project.clj file, for instance
 ```clojure
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [signe "0.1.0-SNAPSHOT"]]
