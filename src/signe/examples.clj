@@ -68,7 +68,7 @@
      
 
     ; Return a widget that is bound to updates in the model
-    (mon/register-1
+    (mon/register-and-update
      monitor
      funcall
 
@@ -237,7 +237,7 @@
         textfield (JTextField. "" 20)]
     (.add panel label)
     (.add panel textfield)
-    (mon/register-1
+    (mon/register-and-update
      monitor
      (mon/call-chain (get-coef :obj index))
      (fn [model-change]
@@ -250,7 +250,7 @@
 (defn make-root-label [monitor index]
   (let [labels ["r_0" "r_1"]
         label (JLabel.)]
-    (mon/register-1
+    (mon/register-and-update
      monitor (mon/call-chain (get-root (calc-roots :obj) index))
      (fn [model-change]
        (let [new-value (mon/get-new-value model-change)]
@@ -377,7 +377,7 @@
        (actionPerformed [e]
          (swap! (mon/get-model mon)
                 (fn [model] (remove-person model key))))))
-    (mon/register-1
+    (mon/register-and-update
      mon
      funcall
      (fn [model-change]
@@ -420,7 +420,7 @@
         monitor (mon/make-monitor model)
         frame (JFrame. "Phone Directory")
         panel (JPanel.)]
-    (mon/register-1
+    (mon/register-and-update
      monitor
      mon/obj
      (fn [mc] (.pack frame)))

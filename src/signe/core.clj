@@ -346,16 +346,16 @@
   (first args))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Main user function to attach
-(defn register-0 [monitor          ; Of type Monitor
-                        funcall          ; The function calls to be applied to the model object.
-                        updater          ; A function that takes a ModelChange. Returns
-                                         ;   new internal state. If nil is returned, this
-                                         ;   listener will be detached. SHOULD NOT TWEAK THE ATOM
-                                         ;   THAT HOLDS THE MODEL!!! (that could in the worst case
-                                         ;    lead to an infinite loop if done carelessly.)
-                        & args]          ; Optional: Initial internal state. nil by default.
-                                         ; RETURNS: A function that calls the updater on the
-                                         ;          model.
+(defn only-register [monitor          ; Of type Monitor
+                     funcall          ; The function calls to be applied to the model object.
+                     updater          ; A function that takes a ModelChange. Returns
+                                        ;   new internal state. If nil is returned, this
+                                        ;   listener will be detached. SHOULD NOT TWEAK THE ATOM
+                                        ;   THAT HOLDS THE MODEL!!! (that could in the worst case
+                                        ;    lead to an infinite loop if done carelessly.)
+                     & args]          ; Optional: Initial internal state. nil by default.
+                                        ; RETURNS: A function that calls the updater on the
+                                        ;          model.
   (let [initial-internal-state (internal-state-from-args args)]
     (assert (Monitor? monitor))
     (assert (Funcall? funcall))
@@ -381,11 +381,11 @@
              nil
              (apply-accessors accessor-list (deref (:model monitor))))))))
 
-(defn register-1 [monitor funcall updater & args]
-  ((register-0 monitor
-                     funcall
-                     updater
-                     (internal-state-from-args args))))
+(defn register-and-update [monitor funcall updater & args]
+  ((only-register monitor
+                  funcall
+                  updater
+                  (internal-state-from-args args))))
 
 
 
