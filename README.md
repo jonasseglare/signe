@@ -5,12 +5,34 @@ Signe is a minimal library that bridges the gap between the functional programmi
 The functionality of this library is best appreciated by taking a look at the examples in [examples.clj](src/signe/examples.clj).
 
 ## Usage
+Here are some very useful functions and macros. See [examples.clj](src/signe/examples.clj) for how they are used in practice.
 
-FIXME
+### Useful Functions
+```clojure
+(make-monitor state-atom)
+```
+Creates a new instance of type Monitor from an atom that wraps the domain model.
+
+```clojure
+(register-0 monitor funcall updater & args)
+```
+registers a function **updater** that will be called whenever the call chain defined by **funcall** evaluates to a different value than before, when applied to the model. **monitor** is the monitor object that monitors the model for changes. The **updater** function takes a record of type ModelChange which contains a state-field, and returns the next hidden state. The initial state is nil, or an optional value from args.
+
+```clojure
+(register-1 monitor funcall updater & args)
+```
+Works like the function **register-0**, but also calls the **updater** function once. Usually, you will want to use this function over **register-0**, so that newly instantiated widgets get initialized.
+
+
+### Useful Macros
+```clojure
+(call-chain expr)
+```
+A macro used to define a chain of function calls. Evaluates to a signe.core/Funcall record. If **expr** is a keyword :obj, it will evaluate to an empty Funcall object. Otherwise it will recursively build a function call chain.
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Jonas Östlund
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
