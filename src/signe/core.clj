@@ -461,4 +461,4 @@
                                    (let [new-user-state (updater new-model-change)]
                                      [new-user-state new-map]))))))
         f2 (fn [mc] (updater-sub mc))]
-    (register-1 monitor funcall f2 [initial-state {}])))
+    (register-and-update monitor funcall f2 [initial-state {}])))
