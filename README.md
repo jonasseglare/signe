@@ -14,14 +14,14 @@ Here are some very useful functions and macros. See [examples.clj](src/signe/exa
 Creates a new instance of type Monitor from an atom that wraps the domain model.
 
 ```clojure
-(register-0 monitor funcall updater & args)
+(only-register monitor funcall updater & args)
 ```
 registers a function **updater** that will be called whenever the call chain defined by **funcall** evaluates to a different value than before, when applied to the model. **monitor** is the monitor object that monitors the model for changes. The **updater** function takes a record of type ModelChange which contains a state-field, and returns the next hidden state. The initial state is nil, or an optional value from args.
 
 ```clojure
-(register-1 monitor funcall updater & args)
+(register-and-update monitor funcall updater & args)
 ```
-Works like the function **register-0**, but also calls the **updater** function once. Usually, you will want to use this function over **register-0**, so that newly instantiated widgets get initialized.
+Works like the function **only-register**, but also calls the **updater** function once. Usually, you will want to use this function over **only-register**, so that newly instantiated widgets get initialized.
 
 
 ### Useful Macros
