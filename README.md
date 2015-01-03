@@ -5,7 +5,9 @@ Signe is a minimal library that bridges the gap between the functional programmi
 The functionality of this library is best appreciated by taking a look at the examples in [examples.clj](src/signe/examples.clj).
 
 ## Usage
-Here are some very useful functions and macros. See [examples.clj](src/signe/examples.clj) for how they are used in practice.
+Here are some very useful functions and macros. Since this is a very small library, the user will probably not need any other functions in order to use the library.
+
+See [examples.clj](src/signe/examples.clj) for how they are used in practice.
 
 ### Useful Functions
 ```clojure
