@@ -28,11 +28,10 @@ Works like the function **only-register**, but also calls the **updater** functi
 ```clojure
 (call-chain expr)
 ```
-A macro used to define a chain of function calls. Evaluates to a signe.core/Funcall record. If **expr** is a keyword :obj, it will evaluate to an empty Funcall object. Otherwise it will recursively build a function call chain.
+A macro used to define a chain of function calls. Evaluates to a Funcall. If **expr** is a keyword **:obj**, it will evaluate to an empty Funcall object. Otherwise it will recursively build a function call chain.
 
 ## License
 
 Copyright © 2014 Jonas Östlund
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License version 1.0.
